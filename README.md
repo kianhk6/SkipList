@@ -1,112 +1,87 @@
-### Basic Vector Operations
+### Iterator Basics
 
-1. **Include the Vector Header**
+1. **Include the Iterator Header**
    ```cpp
-   #include <vector>
+   #include <iterator>
    ```
 
-2. **Declare a Vector**
+2. **Declaring Iterators**
    ```cpp
-   std::vector<int> v;  // Vector of integers
+   std::vector<int>::iterator it; // Iterator for a vector of ints
    ```
 
-3. **Initialize a Vector**
-   ```cpp
-   std::vector<int> v = {1, 2, 3, 4, 5}; // Initialize with elements
-   std::vector<int> v(10, 0); // Initialize with 10 elements of value 0
-   ```
-   
-5. **Iterators**
-   ```cpp
-   v.begin(); // Iterator to the beginning
-   v.end();   // Iterator to the end (one past the last element)
-   ```
+### Initializing an Iterator and Dereferencing It
 
-6. **Size and Capacity**
+```cpp
+auto iterator = container.begin(); // Initialize iterator to the beginning of the container
+int value = *iterator; // Dereference the iterator to obtain the first element's value
+```
+
+### Common Iterator Functions
+
+1. **Begin and End**
    ```cpp
-   v.size();     // Number of elements in the vector
-   v.capacity(); // Storage space currently allocated to the vector
-   v.empty();    // Check if the vector is empty
+   auto it = container.begin(); // Iterator to the beginning
+   auto it_end = container.end(); // Iterator to the end (past-the-last element)
    ```
 
-7. **Modify Elements**
+4. **Advance an Iterator**
    ```cpp
-   v.push_back(6); // Add an element to the end
-   v.pop_back();   // Remove the last element
-   v.insert(v.begin() + 2, 20); // Insert '20' at third position
-   v.erase(v.begin() + 1); // Remove the second element
-   v.clear(); // Remove all elements
+   std::advance(it, n); // Move iterator it forward by n steps
    ```
 
-8. **Resize and Reserve**
+### Algorithms Using Iterators
+
+1. **Sort Using Iterators**
    ```cpp
-   v.resize(20); // Change the size to 20 elements
-   v.reserve(100); // Reserve space for 100 elements
+   std::sort(container.begin(), container.end()); // Sort elements in the container
    ```
 
-### Useful Algorithms with Vectors
-
-1. **Find an Element**
+2. **Finding Elements**
    ```cpp
-   auto it = std::find(v.begin(), v.end(), value); // Find 'value' in vector
-   if (it != v.end()) {
-       // Element found
-   }
+   auto found_it = std::find(container.begin(), container.end(), value); // Find 'value'
    ```
 
-2. **Sort the Vector**
+3. **Copy Elements**
    ```cpp
-   std::sort(v.begin(), v.end()); // Sort in ascending order
-   std::sort(v.rbegin(), v.rend()); // Sort in descending order
+   std::copy(src.begin(), src.end(), dest.begin()); // Copy from src to dest
    ```
 
-3. **Reverse the Vector**
+4. **Accumulate Values**
    ```cpp
-   std::reverse(v.begin(), v.end()); // Reverse the vector
+   int sum = std::accumulate(container.begin(), container.end(), 0); // Sum values
    ```
 
-4. **Unique Elements (Remove Consecutive Duplicates)**
+5. **Replace Values**
    ```cpp
-   auto it = std::unique(v.begin(), v.end());
-   v.resize(std::distance(v.begin(), it)); // Resize vector to new size
+   std::replace(container.begin(), container.end(), old_val, new_val); // Replace old_val with new_val
    ```
 
-5. **Count Elements**
+6. **Remove Elements**
    ```cpp
-   int count = std::count(v.begin(), v.end(), value); // Count occurrences of 'value'
+   auto new_end = std::remove(container.begin(), container.end(), value); // Remove 'value'
+   container.erase(new_end, container.end()); // Erase the removed elements
    ```
 
-6. **Binary Search**
+7. **Unique Elements**
    ```cpp
-   bool found = std::binary_search(v.begin(), v.end(), value); // Binary search for 'value'
+   auto new_end = std::unique(container.begin(), container.end()); // Remove consecutive duplicates
+   container.resize(std::distance(container.begin(), new_end)); // Resize container
    ```
 
-7. **Max and Min Element**
-   ```cpp
-   auto max_it = std::max_element(v.begin(), v.end()); // Iterator to max element
-   auto min_it = std::min_element(v.begin(), v.end()); // Iterator to min element
-   ```
+### Iterating Over Containers
 
-8. **Accumulate (Sum up elements)**
-   ```cpp
-   int sum = std::accumulate(v.begin(), v.end(), 0); // Sum of all elements
-   ```
-
-### Vector of Vectors (2D Vectors)
-1. **Declare a 2D Vector**
-   ```cpp
-   std::vector<std::vector<int>> vec2d(rows, std::vector<int>(cols, initialValue));
-   ```
-
-2. **Access and Modify Elements**
-   ```cpp
-   vec2d[row][col]; // Access element at row, col
-   ```
-
-### Miscellaneous
+- **Using Range-Based For Loop**
   ```cpp
-  for (auto& elem : v) {
-      // Use elem
+  for (auto& element : container) {
+      // Use element
+  }
+  ```
+
+- **Using Traditional Iterators**
+  ```cpp
+  for (auto it = container.begin(); it != container.end(); ++it) {
+      // Use *it
   }
   ```
 
