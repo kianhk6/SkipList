@@ -1,5 +1,3 @@
-Creating a cheat sheet for using vectors in C++ can be really useful, especially for solving problems on platforms like LeetCode. Here's a comprehensive guide covering the essential functions and operations of the `std::vector` class, which is part of the C++ Standard Library.
-
 ### Basic Vector Operations
 
 1. **Include the Vector Header**
@@ -17,13 +15,7 @@ Creating a cheat sheet for using vectors in C++ can be really useful, especially
    std::vector<int> v = {1, 2, 3, 4, 5}; // Initialize with elements
    std::vector<int> v(10, 0); // Initialize with 10 elements of value 0
    ```
-
-4. **Access Elements**
-   ```cpp
-   v[2];  // Access the third element
-   v.at(2); // Access the third element with bounds checking
-   ```
-
+   
 5. **Iterators**
    ```cpp
    v.begin(); // Iterator to the beginning
@@ -112,20 +104,9 @@ Creating a cheat sheet for using vectors in C++ can be really useful, especially
    ```
 
 ### Miscellaneous
-- **Range-based for loop** for iterating over vector elements:
   ```cpp
   for (auto& elem : v) {
       // Use elem
   }
   ```
 
-- **Lambda functions** can be used with algorithms like `std::sort`, `std::find_if`, etc.
-
-- **Vector of Pairs**: Useful for problems involving pairs of values.
-  ```cpp
-  std::vector<std::pair<int, int>> vp;
-  ```
-
-Remember, this is just a summary. The C++ Standard Library offers much more, and you might want to dive into specific documentation when needed. For solving problems on platforms like LeetCode, this cheat sheet should give you a strong foundation
-
- to work with vectors effectively.
